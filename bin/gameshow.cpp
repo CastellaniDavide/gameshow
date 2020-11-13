@@ -1,42 +1,55 @@
-/**
- * @file gameshow.cpp
- *
- * @version 01.01 2020-11-13
- *
- * @brief Allenamento OIS2020
- *
- * @ingroup gameshow
- * (Note: this needs exactly one @defgroup somewhere)
- *
- * @author Castellani Davide
- *
- * Contact: contacts@castellanidavide.it
- *
+/*
+ * This template is valid both in C and in C++,
+ * so you can expand it with code from both languages.
+ * NOTE: it is recommended to use this even if you don't
+ * understand the following code.
  */
 
-// Includes
 #include <bits/stdc++.h>
-using namespace std;
+usind namespace std;
 
-// Variabiles
-int N;
+// constraints
+#define MAXN 100000
 
-// Main code
+// #define DEBUB
+
+// input data
+int N, M, i;
+int P[MAXN], C[MAXN];
+
+// my data
+int boxes, budget;
+
 int main()
 {
-  // Cncomment the following lines if you want to read/write from files
-  // freopen("input.txt", "r", stdin);
-  // freopen("output.txt", "w", stdout);
+//  uncomment the following lines if you want to read/write from files
+    freopen("input.txt", "r", stdin);
+#ifndef DEBUB
+    freopen("output.txt", "w", stdout);
+#endif // DEBUB
 
-  // Input
-  cin >> N;
+    assert(2 == scanf("%d %d", &N, &M));
+    for(i=0; i<N; i++)
+        assert(1 == scanf("%d", &P[i]));
+    for(i=0; i<N; i++)
+        assert(1 == scanf("%d", &C[i]));
 
-  // Code
-  // ...
+    budget = M;
+    boxes = 0;
 
-  // Output
-  cout << N << endl;
+    for (int i = 0; i < N; ++i)
+    {
+        if (budget >= P[i])
+        {
+            budget -= P[i];
+            boxes++;
+        }
+        else
+        {
+            budget += C[i];
+        }
+    }
 
-  // End
-  return 0;
+    printf("%d %d\n", boxes, budget); // print the result
+    return 0;
 }
